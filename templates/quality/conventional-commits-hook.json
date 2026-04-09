@@ -1,0 +1,15 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "case \"$CLAUDE_TOOL_INPUT\" in *'git commit'*) msg=$(echo \"$CLAUDE_TOOL_INPUT\" | grep -oP '(?<=-m [\"'\\''\"'\\'''\"])[^\"'\\''\"'\\'''\"]*') ; if [ -n \"$msg\" ] && ! echo \"$msg\" | grep -qP '^(feat|fix|docs|style|refactor|perf|test|build|ci|chore|revert)(\\(.+\\))?!?: .+'; then echo 'BLOCK: コミットメッセージがConventional Commits形式ではありません。形式: type(scope): description (例: feat(auth): add login endpoint)' ; exit 1 ; fi ;; esac ; exit 0"
+          }
+        ]
+      }
+    ]
+  }
+}

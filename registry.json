@@ -1,0 +1,270 @@
+{
+  "version": "1.0.0",
+  "registry": "https://github.com/abemasanori/claude-template-hub",
+  "templates": [
+    {
+      "id": "memory-system",
+      "name": "メモリシステム",
+      "category": "quality",
+      "description": "user/feedback/project/referenceの4種を管理するファイルベースのメモリシステム。会話をまたいでコンテキストを保持できる。",
+      "keywords": ["メモリ", "記憶", "コンテキスト保持", "会話をまたぐ", "引き継ぎ", "プロジェクト情報"],
+      "author": {
+        "name": "abemasanori",
+        "url": "https://github.com/abemasanori"
+      },
+      "source": {
+        "type": "original",
+        "url": null,
+        "inspiration": "Claude Code公式ドキュメントのmemoryシステムをベースに整理"
+      },
+      "files": [
+        {
+          "action": "create",
+          "target": ".claude/projects/{project_slug}/memory/MEMORY.md",
+          "source": "templates/quality/memory-system/MEMORY.md"
+        }
+      ],
+      "notes": "プロジェクト名からslugを生成してディレクトリを作成する。"
+    },
+    {
+      "id": "global-claude-md",
+      "name": "グローバルCLAUDE.md（日本語・簡潔スタイル）",
+      "category": "quality",
+      "description": "日本語優先・簡潔応答・安全ルール・コーディング原則を含むグローバル設定。",
+      "keywords": ["CLAUDE.md", "日本語", "応答スタイル", "安全ルール", "設定", "コーディング規約"],
+      "author": {
+        "name": "abemasanori",
+        "url": "https://github.com/abemasanori"
+      },
+      "source": {
+        "type": "original",
+        "url": null,
+        "inspiration": null
+      },
+      "files": [
+        {
+          "action": "merge",
+          "target": "~/.claude/CLAUDE.md",
+          "source": "templates/quality/global-claude-md.md"
+        }
+      ],
+      "notes": "既存のCLAUDE.mdがある場合はマージする。上書きしない。"
+    },
+    {
+      "id": "notification-hook",
+      "name": "通知フック（macOS）",
+      "category": "automation",
+      "description": "ツール実行完了・エラー時にmacOSの通知音を鳴らすhook。長時間タスクの完了を検知できる。",
+      "keywords": ["通知", "音", "完了通知", "長時間タスク", "hook", "macOS", "離席中"],
+      "author": {
+        "name": "abemasanori",
+        "url": "https://github.com/abemasanori"
+      },
+      "source": {
+        "type": "original",
+        "url": null,
+        "inspiration": null
+      },
+      "files": [
+        {
+          "action": "merge",
+          "target": ".claude/settings.json",
+          "source": "templates/automation/notification-hook.json"
+        }
+      ],
+      "notes": "settings.jsonのhooksセクションにマージする。"
+    },
+    {
+      "id": "daily-report",
+      "name": "日次レポート自動生成",
+      "category": "automation",
+      "description": "Backlog + Slackの活動を集約して日次レポートを生成するスキル。URLつき。",
+      "keywords": ["日次レポート", "Backlog", "Slack", "朝のルーティン", "タスク管理", "自動化", "Google Calendar"],
+      "author": {
+        "name": "abemasanori",
+        "url": "https://github.com/abemasanori"
+      },
+      "source": {
+        "type": "original",
+        "url": null,
+        "inspiration": null
+      },
+      "files": [
+        {
+          "action": "create",
+          "target": ".claude/commands/daily-report.md",
+          "source": "templates/automation/daily-report.md"
+        }
+      ],
+      "notes": "BacklogのスペースID・APIキーとSlackトークンが必要。適用後にプレースホルダーを自分の値に書き換えること。"
+    },
+    {
+      "id": "safety-hooks",
+      "name": "安全フック（破壊的操作の前確認）",
+      "category": "automation",
+      "description": "rm -rf / git push --force / git reset --hard などの前にユーザー確認を挟むhook。",
+      "keywords": ["安全", "誤操作防止", "破壊的操作", "確認", "rm -rf", "force push", "hook"],
+      "author": {
+        "name": "abemasanori",
+        "url": "https://github.com/abemasanori"
+      },
+      "source": {
+        "type": "original",
+        "url": null,
+        "inspiration": null
+      },
+      "files": [
+        {
+          "action": "merge",
+          "target": ".claude/settings.json",
+          "source": "templates/automation/safety-hooks.json"
+        }
+      ],
+      "notes": "settings.jsonのhooksセクションにマージする。"
+    },
+    {
+      "id": "nextjs-claude-md",
+      "name": "Next.js プロジェクト用 CLAUDE.md",
+      "category": "stack",
+      "description": "App Router・Tailwind・TypeScript構成のNext.jsプロジェクト向けコーディング規約。",
+      "keywords": ["Next.js", "App Router", "TypeScript", "Tailwind", "React", "フロントエンド"],
+      "author": {
+        "name": "abemasanori",
+        "url": "https://github.com/abemasanori"
+      },
+      "source": {
+        "type": "original",
+        "url": null,
+        "inspiration": null
+      },
+      "files": [
+        {
+          "action": "create",
+          "target": "CLAUDE.md",
+          "source": "templates/stack/nextjs-claude-md.md"
+        }
+      ],
+      "notes": "プロジェクトルートに配置。既存ファイルがある場合は確認してからマージ。"
+    },
+    {
+      "id": "shared-claude-md",
+      "name": "チーム開発共通 CLAUDE.md",
+      "category": "team",
+      "description": "ブランチ戦略・PRルール・コミット規約・セキュリティ方針を含むチーム向けCLAUDE.md。",
+      "keywords": ["チーム開発", "コードレビュー", "ブランチ戦略", "PR", "コミット規約", "複数人"],
+      "author": {
+        "name": "abemasanori",
+        "url": "https://github.com/abemasanori"
+      },
+      "source": {
+        "type": "original",
+        "url": null,
+        "inspiration": null
+      },
+      "files": [
+        {
+          "action": "create",
+          "target": "CLAUDE.md",
+          "source": "templates/team/shared-claude-md.md"
+        }
+      ],
+      "notes": "プロジェクトルートに配置。チームのルールに合わせて編集すること。"
+    },
+    {
+      "id": "code-review-skill",
+      "name": "コードレビュースキル",
+      "category": "team",
+      "description": "PRまたは現在のブランチをチェックリストに基づいてレビューするスキル。",
+      "keywords": ["コードレビュー", "PR", "レビュー", "チェックリスト", "品質", "セキュリティ"],
+      "author": {
+        "name": "abemasanori",
+        "url": "https://github.com/abemasanori"
+      },
+      "source": {
+        "type": "original",
+        "url": null,
+        "inspiration": null
+      },
+      "files": [
+        {
+          "action": "create",
+          "target": ".claude/commands/review.md",
+          "source": "templates/team/code-review-skill.md"
+        }
+      ],
+      "notes": "ghコマンドが使える環境が必要。"
+    },
+    {
+      "id": "tdd-workflow-skill",
+      "name": "TDDワークフロースキル",
+      "category": "quality",
+      "description": "Red-Green-Refactorサイクルに従ってテスト駆動開発を行うスキル。テストファーストを強制し、各フェーズでテスト実行を確認する。",
+      "keywords": ["TDD", "テスト駆動開発", "Red-Green-Refactor", "テストファースト", "品質", "テスト"],
+      "author": {
+        "name": "template-builder-agent",
+        "url": null
+      },
+      "source": {
+        "type": "community",
+        "url": "https://www.aihero.dev/skill-test-driven-development-claude-code",
+        "inspiration": "aihero.devのTDDスキル記事、alexop.devのRed-Green-Refactorループ記事、GitHub上のtdd-guard・claude-code-workflowsリポジトリを参考に汎用化"
+      },
+      "files": [
+        {
+          "action": "create",
+          "target": ".claude/commands/tdd.md",
+          "source": "templates/quality/tdd-workflow-skill.md"
+        }
+      ],
+      "notes": "プロジェクトのテストフレームワークに合わせてテスト実行コマンドを調整すること。"
+    },
+    {
+      "id": "auto-format-hook",
+      "name": "自動フォーマットフック（Prettier/ESLint/Biome）",
+      "category": "automation",
+      "description": "ファイル編集後にフォーマッターを自動実行するPostToolUseフック。Prettier・ESLint・Biome等に対応。",
+      "keywords": ["フォーマット", "Prettier", "ESLint", "Biome", "自動整形", "hook", "PostToolUse", "lint"],
+      "author": {
+        "name": "template-builder-agent",
+        "url": null
+      },
+      "source": {
+        "type": "community",
+        "url": "https://github.com/ryanlewis/claude-format-hook",
+        "inspiration": "claude-format-hookリポジトリおよびDEV Community・DataCamp等の自動フォーマット解説記事を参考に汎用化"
+      },
+      "files": [
+        {
+          "action": "merge",
+          "target": ".claude/settings.json",
+          "source": "templates/automation/auto-format-hook.json"
+        }
+      ],
+      "notes": "{FORMAT_COMMAND}をプロジェクトのフォーマッターに置き換えること。例: npx prettier --write / npx eslint --fix / npx biome check --write"
+    },
+    {
+      "id": "conventional-commits-hook",
+      "name": "Gitコミット規約フック（Conventional Commits）",
+      "category": "quality",
+      "description": "コミットメッセージをConventional Commits形式（feat:/fix:/docs:等）に強制するPreToolUseフック。",
+      "keywords": ["Conventional Commits", "コミット規約", "Git", "hook", "PreToolUse", "feat", "fix", "コミットメッセージ"],
+      "author": {
+        "name": "template-builder-agent",
+        "url": null
+      },
+      "source": {
+        "type": "community",
+        "url": "https://github.com/anthropics/claude-code/issues/4834",
+        "inspiration": "Claude Code GitHub Issuesのフック関連Feature Request、reading.sh・markaicode.comのConventional Commitsフック設定ガイドを参考に汎用化"
+      },
+      "files": [
+        {
+          "action": "merge",
+          "target": ".claude/settings.json",
+          "source": "templates/quality/conventional-commits-hook.json"
+        }
+      ],
+      "notes": "Bashツールでのgit commitコマンドを監視し、Conventional Commits形式でないメッセージをブロックする。"
+    }
+  ]
+}
